@@ -15,7 +15,7 @@
                     </nav>
                 </div>
                 <div class="col-lg-4 text-right">
-                    <a href="{{ route('product.create') }}" class="btn btn-success"> Create New
+                    <a href="{{ route('product.create') }}" class="btn btn-success"> Create new
                         product</a>
                 </div>
             </div>
