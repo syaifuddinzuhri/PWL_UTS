@@ -87,7 +87,8 @@
 
                                                 <button type="button" class="btn btn-sm btn-danger btn-delete"
                                                     data-attr="{{ route('product.destroy', $product->id) }}"
-                                                    data-toggle="modal" data-target="#deleteModal">
+                                                    data-redirect="{{ route('product.index') }}" data-toggle="modal"
+                                                    data-target="#deleteModal">
                                                     Delete
                                                 </button>
 
@@ -135,6 +136,7 @@
         $(document).ready(function() {
             $('#product-table .btn-delete').on('click', function() {
                 let url = $(this).data('attr')
+                let redirect = $(this).data('redirect')
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $('#submit-delete').on('click', function() {
                     $.ajax({
@@ -146,7 +148,7 @@
                         },
                         success: function(response) {
                             $('#deleteModal').modal('hide')
-                            location.reload();
+                            window.location.href = redirect;
                         }
                     });
                 })
