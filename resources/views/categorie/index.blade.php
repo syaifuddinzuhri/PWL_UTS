@@ -17,6 +17,8 @@
                 <div class="col-lg-4 text-right">
                     <a href="{{ route('categorie.create') }}" class="btn btn-success"> Create new
                         category</a>
+                    <a href="{{ route('categorie.index') }}" class="btn btn-primary"> Refresh</a>
+
                 </div>
             </div>
         </div>

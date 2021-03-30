@@ -17,6 +17,7 @@
                 <div class="col-lg-4 text-right">
                     <a href="{{ route('product.create') }}" class="btn btn-success"> Create new
                         product</a>
+                    <a href="{{ route('product.index') }}" class="btn btn-primary"> Refresh</a>
                 </div>
             </div>
         </div>
