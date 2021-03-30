@@ -35,10 +35,15 @@ class ProductStoreRequest extends FormRequest
 
     public function getAttributes()
     {
-        $latestProduct = Product::orderBy('created_at', 'DESC')->first();
+        $latestProduct = Product::orderBy('id', 'DESC')->first();
+        if ($this->isMethod('POST')) {
+            return array_merge(
+                $this->only('name', 'price', 'qty', 'categorie_id'),
+                ['code_product' => 'PRD' . str_pad($latestProduct->id + 1, 3, "0", STR_PAD_LEFT)]
+            );
+        }
         return array_merge(
             $this->only('name', 'price', 'qty', 'categorie_id'),
-            ['code_product' => 'PRD' . str_pad($latestProduct->id + 1, 3, "0", STR_PAD_LEFT)]
         );
     }
 }
