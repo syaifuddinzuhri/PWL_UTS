@@ -59,11 +59,12 @@
                             <table class="table table-bordered">
                                 <tr>
                                     <th>No</th>
+                                    <th>Product Code</th>
                                     <th>Name</th>
                                     <th>Category</th>
                                     <th>Price</th>
                                     <th>Qty</th>
-                                    <th width="280px">Action</th>
+                                    <th>Action</th>
                                 </tr>
                                 @if ($products->isEmpty())
                                     <th colspan="6" class="text-center">Data is empty</th>
@@ -72,19 +73,21 @@
                                         <tr>
                                             <td>{{ ($products->currentpage() - 1) * $products->perpage() + $loop->index + 1 }}
                                             </td>
+                                            <td>{{ $product->code_product }}</td>
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->categorie->name }}</td>
                                             <td>{{ $product->price }}</td>
                                             <td>{{ $product->qty }}</td>
                                             <td>
-                                                <form action="{{ route('product.destroy', $product->id) }}" method="POST">
-                                                    <a class="btn btn-info"
+                                                <form action="{{ route('product.destroy', $product->id) }}"
+                                                    method="POST">
+                                                    <a class="btn btn-sm btn-info"
                                                         href="{{ route('product.show', $product->id) }}">Show</a>
-                                                    <a class="btn btn-primary"
+                                                    <a class="btn btn-sm btn-primary"
                                                         href="{{ route('product.edit', $product->id) }}">Edit</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>

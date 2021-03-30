@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Product;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\DB;
 
@@ -34,23 +36,10 @@ class ProductStoreRequest extends FormRequest
 
     public function getAttributes()
     {
+        $latestProduct = Product::orderBy('created_at', 'DESC')->first();
         return array_merge(
             $this->only('name', 'price', 'qty', 'categorie_id'),
-            ['code_product' => $this->autoCode('products', 'id', 'PRD')]
+            ['code_product' => 'PRD' . str_pad($latestProduct->id + 1, 3, "0", STR_PAD_LEFT)]
         );
-    }
-
-    private function autoCode($table, $primary, $prefix)
-    {
-        $q = DB::table($table)->select(DB::raw('MAX(RIGHT(' . $primary . ',1)) as kd_max'));
-        if ($q->count() > 0) {
-            foreach ($q->get() as $k) {
-                $tmp = ((int)$k->kd_max) + 1;
-                $kd = $prefix . sprintf("%03s", $tmp);
-            }
-        } else {
-            $kd = $prefix . "001";
-        }
-        return $kd;
     }
 }

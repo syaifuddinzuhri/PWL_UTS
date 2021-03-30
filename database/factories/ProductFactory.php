@@ -21,7 +21,9 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $code = 'PRD' . $this->faker->numberBetween($min = 001, $max = 999);
         return [
+            'code_product' => $code,
             'name' => $this->faker->words(5, true),
             'price' => $this->faker->randomFloat(2, 10, 100),
             'qty' => $this->faker->numberBetween($min = 0, $max = 200),
