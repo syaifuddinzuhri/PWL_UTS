@@ -37,7 +37,7 @@ class CategorieController extends Controller
      */
     public function store(CategorieStoreRequest $request)
     {
-        $user = Categorie::create($request->getAttributes());
+        Categorie::create($request->getAttributes());
         return redirect()->route('categorie.index')->with('success', 'Data saved successfully!');
     }
 
@@ -49,7 +49,8 @@ class CategorieController extends Controller
      */
     public function show($id)
     {
-        //
+        $categorie = Categorie::findOrFail($id);
+        return view('categorie.show', compact('categorie'));
     }
 
     /**
