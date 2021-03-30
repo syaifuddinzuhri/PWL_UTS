@@ -93,6 +93,6 @@ class CategorieController extends Controller
     public function destroy($id)
     {
         Categorie::findOrFail($id)->delete();
-        return redirect()->route('categorie.index')->with('success', 'Data deleted successfully!');
+        return response()->json(['success' => true, 'message' => 'Data deleted succesfully'], 200);
     }
 }
