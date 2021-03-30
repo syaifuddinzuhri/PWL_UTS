@@ -56,7 +56,7 @@
                             <h5 class="card-title font-weight-bold m-0">Data products</h5>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="product-table">
                                 <tr>
                                     <th>No</th>
                                     <th>Product Code</th>
@@ -79,16 +79,18 @@
                                             <td>{{ $product->price }}</td>
                                             <td>{{ $product->qty }}</td>
                                             <td>
-                                                <form action="{{ route('product.destroy', $product->id) }}"
-                                                    method="POST">
-                                                    <a class="btn btn-sm btn-info"
-                                                        href="{{ route('product.show', $product->id) }}">Show</a>
-                                                    <a class="btn btn-sm btn-primary"
-                                                        href="{{ route('product.edit', $product->id) }}">Edit</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                                </form>
+
+                                                <a class="btn btn-sm btn-info"
+                                                    href="{{ route('product.show', $product->id) }}">Show</a>
+                                                <a class="btn btn-sm btn-primary"
+                                                    href="{{ route('product.edit', $product->id) }}">Edit</a>
+
+                                                <button type="button" class="btn btn-sm btn-danger btn-delete"
+                                                    data-attr="{{ route('product.destroy', $product->id) }}"
+                                                    data-toggle="modal" data-target="#deleteModal">
+                                                    Delete
+                                                </button>
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -104,5 +106,53 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you, want to delete??</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="submit-delete" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+
+    <script>
+        $(document).ready(function() {
+            $('#product-table .btn-delete').on('click', function() {
+                let url = $(this).data('attr')
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $('#submit-delete').on('click', function() {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: {
+                            _token: CSRF_TOKEN,
+                            _method: "DELETE"
+                        },
+                        success: function(response) {
+                            $('#deleteModal').modal('hide')
+                            location.reload();
+                        }
+                    });
+                })
+            })
+        });
+
+    </script>
 
 @endsection

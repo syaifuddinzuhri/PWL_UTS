@@ -101,6 +101,6 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::findOrFail($id)->delete();
-        return redirect()->route('product.index')->with('success', 'Data deleted successfully!');
+        return response()->json(['success' => true, 'message' => 'Data deleted succesfully'], 200);
     }
 }
