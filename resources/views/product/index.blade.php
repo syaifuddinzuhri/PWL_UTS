@@ -40,6 +40,17 @@
             </div>
         </div>
     </section>
+    @if (isset($keywords))
+        <section class="mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p class="m-0">Search data with keywords : <strong>{{ $keywords }}</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
     <section class="mb-5 mt-3">
         <div class="container">
             <div class="row">

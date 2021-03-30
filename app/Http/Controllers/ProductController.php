@@ -25,9 +25,9 @@ class ProductController extends Controller
                 ->orWhere('code_product', 'LIKE', "%" . $keywords . "%")
                 ->paginate(10);
             $products->appends(['keywords' => $keywords]);
-        } else {
-            $products = Product::with('categorie')->paginate(10);
+            return view('product.index', compact('products', 'keywords'));
         }
+        $products = Product::with('categorie')->paginate(10);
         return view('product.index', compact('products'));
     }
 
