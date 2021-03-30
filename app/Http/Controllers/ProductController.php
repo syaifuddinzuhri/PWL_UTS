@@ -14,9 +14,18 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('categorie')->paginate(10);
+        $keywords = $request->keywords;
+        if ($keywords) {
+            $products = Product::whereHas('categorie', function ($q) use ($keywords) {
+                $q->where('name', 'LIKE', "%" . $keywords . "%");
+            })
+                ->orWhere('name', 'LIKE', "%" . $keywords . "%")
+                ->paginate(10);
+        } else {
+            $products = Product::with('categorie')->paginate(10);
+        }
         return view('product.index', compact('products'));
     }
 
