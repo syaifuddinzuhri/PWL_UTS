@@ -31,7 +31,8 @@
                         <div class="row">
                             <div class="col-lg-8">
                                 <input type="text" name="keywords" class="form-control" id="keywords"
-                                    aria-describedby="keywords" placeholder="Enter a keywords">
+                                    aria-describedby="keywords" placeholder="Enter a keywords"
+                                    value="{{ isset($keywords) ? $keywords : '' }}">
                             </div>
                             <div class="col-lg-4 pl-0">
                                 <button type="submit" class="btn btn-primary">Search</button>
