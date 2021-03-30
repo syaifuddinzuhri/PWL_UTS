@@ -11,7 +11,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('categorie.index') }}">All Categories</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Create new categorie</li>
+                            <li class="breadcrumb-item active" aria-current="page">Create new category</li>
                         </ol>
                     </nav>
                 </div>
@@ -27,7 +27,7 @@
                 <div class="col-12">
                     <div class="card shadow">
                         <div class="card-header">
-                            <h5 class="card-title font-weight-bold m-0">Data Categories</h5>
+                            <h5 class="card-title font-weight-bold m-0">Create new category</h5>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('categorie.store') }}" method="POST">

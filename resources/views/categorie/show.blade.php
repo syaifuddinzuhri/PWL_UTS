@@ -27,7 +27,7 @@
                 <div class="col-12">
                     <div class="card shadow">
                         <div class="card-header">
-                            <h5 class="card-title font-weight-bold m-0">Detail Categories</h5>
+                            <h5 class="card-title font-weight-bold m-0">Detail Category</h5>
                         </div>
                         <div class="card-body">
                             <ul class="list-group">

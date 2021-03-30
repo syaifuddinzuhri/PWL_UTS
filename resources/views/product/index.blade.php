@@ -60,7 +60,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Name</th>
-                                    <th>Categorie</th>
+                                    <th>Category</th>
                                     <th>Price</th>
                                     <th>Qty</th>
                                     <th width="280px">Action</th>

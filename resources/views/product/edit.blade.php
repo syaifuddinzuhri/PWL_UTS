@@ -58,9 +58,9 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="categorie_id">Choose categorie<sup class="text-danger">*</sup></label>
+                                    <label for="categorie_id">Choose category<sup class="text-danger">*</sup></label>
                                     <select class="form-control" name="categorie_id" id="categorie_id">
-                                        <option selected disabled>--- Choose categorie ---</option>
+                                        <option selected disabled>--- Choose category ---</option>
                                         @foreach ($categories as $categorie)
                                             <option value="{{ $categorie->id }}"
                                                 {{ $product->categorie_id === $categorie->id ? 'selected' : '' }}>

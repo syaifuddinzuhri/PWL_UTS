@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-lg-4 text-right">
                     <a href="{{ route('categorie.create') }}" class="btn btn-success"> Create new
-                        categorie</a>
+                        category</a>
                 </div>
             </div>
         </div>
