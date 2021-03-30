@@ -13,9 +13,13 @@ class CategorieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Categorie::paginate(5);
+        if ($request->keywords) {
+            $categories = Categorie::where('name', 'like', "%" . $request->keywords . "%")->paginate(5);
+        } else {
+            $categories = Categorie::paginate(5);
+        }
         return view('categorie.index', compact('categories'));
     }
 

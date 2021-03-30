@@ -21,7 +21,26 @@
             </div>
         </div>
     </section>
-    <section class="mb-5">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form action="{{ route('categorie.index') }}" method="GET">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <input type="text" name="keywords" class="form-control" id="keywords"
+                                    aria-describedby="keywords" placeholder="Enter e keywords">
+                            </div>
+                            <div class="col-lg-4 pl-0">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="mb-5 mt-3">
         <div class="container">
             <div class="row">
                 <div class="col-12">
