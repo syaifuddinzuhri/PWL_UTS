@@ -51,7 +51,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::with('categorie')->findOrFail($id);
+        return view('product.show', compact('product'));
     }
 
     /**
@@ -62,7 +63,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Categorie::all();
+        $product = Product::with('categorie')->findOrFail($id);
+        return view('product.edit', compact('product', 'categories'));
     }
 
     /**
@@ -72,9 +75,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductStoreRequest $request, $id)
     {
-        //
+        Product::findOrFail($id)->update($request->getAttributes());
+        return redirect()->route('product.index')->with('success', 'Data updated successfully!');
     }
 
     /**
