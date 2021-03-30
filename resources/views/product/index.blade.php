@@ -65,27 +65,32 @@
                                     <th>Qty</th>
                                     <th width="280px">Action</th>
                                 </tr>
-                                @foreach ($products as $product)
-                                    <tr>
-                                        <td>{{ ($products->currentpage() - 1) * $products->perpage() + $loop->index + 1 }}
-                                        </td>
-                                        <td>{{ $product->name }}</td>
-                                        <td>{{ $product->categorie->name }}</td>
-                                        <td>{{ $product->price }}</td>
-                                        <td>{{ $product->qty }}</td>
-                                        <td>
-                                            <form action="{{ route('product.destroy', $product->id) }}" method="POST">
-                                                <a class="btn btn-info"
-                                                    href="{{ route('product.show', $product->id) }}">Show</a>
-                                                <a class="btn btn-primary"
-                                                    href="{{ route('product.edit', $product->id) }}">Edit</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                @if ($products->isEmpty())
+                                    <th colspan="6" class="text-center">Data is empty</th>
+                                @else
+                                    @foreach ($products as $product)
+                                        <tr>
+                                            <td>{{ ($products->currentpage() - 1) * $products->perpage() + $loop->index + 1 }}
+                                            </td>
+                                            <td>{{ $product->name }}</td>
+                                            <td>{{ $product->categorie->name }}</td>
+                                            <td>{{ $product->price }}</td>
+                                            <td>{{ $product->qty }}</td>
+                                            <td>
+                                                <form action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                                    <a class="btn btn-info"
+                                                        href="{{ route('product.show', $product->id) }}">Show</a>
+                                                    <a class="btn btn-primary"
+                                                        href="{{ route('product.edit', $product->id) }}">Edit</a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+
                             </table>
                         </div>
                         <div class="card-footer">

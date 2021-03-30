@@ -63,25 +63,31 @@
                                     <th>Description</th>
                                     <th width="280px">Action</th>
                                 </tr>
-                                @foreach ($categories as $categorie)
-                                    <tr>
-                                        <td>{{ ($categories->currentpage() - 1) * $categories->perpage() + $loop->index + 1 }}
-                                        </td>
-                                        <td>{{ $categorie->name }}</td>
-                                        <td>{{ $categorie->description }}</td>
-                                        <td>
-                                            <form action="{{ route('categorie.destroy', $categorie->id) }}" method="POST">
-                                                <a class="btn btn-info"
-                                                    href="{{ route('categorie.show', $categorie->id) }}">Show</a>
-                                                <a class="btn btn-primary"
-                                                    href="{{ route('categorie.edit', $categorie->id) }}">Edit</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                @if ($categories->isEmpty())
+                                    <th colspan="4" class="text-center">Data is empty</th>
+                                @else
+                                    @foreach ($categories as $categorie)
+                                        <tr>
+                                            <td>{{ ($categories->currentpage() - 1) * $categories->perpage() + $loop->index + 1 }}
+                                            </td>
+                                            <td>{{ $categorie->name }}</td>
+                                            <td>{{ $categorie->description }}</td>
+                                            <td>
+                                                <form action="{{ route('categorie.destroy', $categorie->id) }}"
+                                                    method="POST">
+                                                    <a class="btn btn-info"
+                                                        href="{{ route('categorie.show', $categorie->id) }}">Show</a>
+                                                    <a class="btn btn-primary"
+                                                        href="{{ route('categorie.edit', $categorie->id) }}">Edit</a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+
                             </table>
                         </div>
                         <div class="card-footer">
