@@ -15,34 +15,22 @@
                     </nav>
                 </div>
                 <div class="col-lg-4 text-right">
-                    <a class="btn btn-success" href="{{ route('categorie.create') }}"> Create new categorie</a>
+                    <a href="{{ route('categorie.create') }}" class="btn btn-success"> Create new
+                        categorie</a>
                 </div>
             </div>
         </div>
     </section>
-    {{-- <div class="row">
-        <div class="col-lg-6">
-            <form action="{{ route('categorie.search') }}" method="GET">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <input type="text" name="keywords" class="form-control" id="keywords" aria-describedby="keywords"
-                            placeholder="Enter a keyword">
-                    </div>
-                    <div class="col-lg-4 pl-0">
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div> --}}
     <section class="mb-5">
         <div class="container">
             <div class="row">
-                @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <p>{{ $message }}</p>
-                    </div>
-                @endif
+                <div class="col-12">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
+                </div>
                 <div class="col-12">
                     <div class="card shadow">
                         <div class="card-header">
@@ -58,7 +46,8 @@
                                 </tr>
                                 @foreach ($categories as $categorie)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ ($categories->currentpage() - 1) * $categories->perpage() + $loop->index + 1 }}
+                                        </td>
                                         <td>{{ $categorie->name }}</td>
                                         <td>{{ $categorie->description }}</td>
                                         <td>
@@ -84,4 +73,5 @@
             </div>
         </div>
     </section>
+
 @endsection

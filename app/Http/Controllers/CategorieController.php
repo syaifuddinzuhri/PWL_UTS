@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategorieStoreRequest;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        //
+        return view('categorie.create');
     }
 
     /**
@@ -34,9 +35,10 @@ class CategorieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategorieStoreRequest $request)
     {
-        //
+        $user = Categorie::create($request->getAttributes());
+        return redirect()->route('categorie.index')->with('success', 'Data saved successfully!');
     }
 
     /**
