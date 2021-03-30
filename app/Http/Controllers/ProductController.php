@@ -23,6 +23,7 @@ class ProductController extends Controller
             })
                 ->orWhere('name', 'LIKE', "%" . $keywords . "%")
                 ->paginate(10);
+            $products->appends(['keywords' => $keywords]);
         } else {
             $products = Product::with('categorie')->paginate(10);
         }

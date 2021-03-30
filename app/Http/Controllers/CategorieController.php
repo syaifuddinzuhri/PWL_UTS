@@ -15,8 +15,10 @@ class CategorieController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->keywords) {
+        $keywords = $request->keywords;
+        if ($keywords) {
             $categories = Categorie::where('name', 'like', "%" . $request->keywords . "%")->paginate(5);
+            $categories->appends(['keywords' => $keywords]);
         } else {
             $categories = Categorie::paginate(5);
         }
