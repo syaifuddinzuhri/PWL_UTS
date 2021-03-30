@@ -62,7 +62,7 @@
                                     <th>Product Code</th>
                                     <th>Name</th>
                                     <th>Category</th>
-                                    <th>Price</th>
+                                    <th>Price (Rp)</th>
                                     <th>Qty</th>
                                     <th>Action</th>
                                 </tr>
@@ -76,7 +76,7 @@
                                             <td>{{ $product->code_product }}</td>
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->categorie->name }}</td>
-                                            <td>{{ $product->price }}</td>
+                                            <td>@currency($product->price)</td>
                                             <td>{{ $product->qty }}</td>
                                             <td>
 
