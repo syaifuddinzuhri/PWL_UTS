@@ -19,9 +19,9 @@ class CategorieController extends Controller
         if ($keywords) {
             $categories = Categorie::where('name', 'like', "%" . $request->keywords . "%")->paginate(5);
             $categories->appends(['keywords' => $keywords]);
-        } else {
-            $categories = Categorie::paginate(5);
+            return view('categorie.index', compact('categories', 'keywords'));
         }
+        $categories = Categorie::paginate(5);
         return view('categorie.index', compact('categories'));
     }
 
