@@ -22,6 +22,7 @@ class ProductController extends Controller
                 $q->where('name', 'LIKE', "%" . $keywords . "%");
             })
                 ->orWhere('name', 'LIKE', "%" . $keywords . "%")
+                ->orWhere('code_product', 'LIKE', "%" . $keywords . "%")
                 ->paginate(10);
             $products->appends(['keywords' => $keywords]);
         } else {

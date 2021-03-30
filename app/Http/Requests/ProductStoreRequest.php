@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\DB;
 
 class ProductStoreRequest extends FormRequest
 {
@@ -35,6 +36,21 @@ class ProductStoreRequest extends FormRequest
     {
         return array_merge(
             $this->only('name', 'price', 'qty', 'categorie_id'),
+            ['code_product' => $this->autoCode('products', 'id', 'PRD')]
         );
+    }
+
+    private function autoCode($table, $primary, $prefix)
+    {
+        $q = DB::table($table)->select(DB::raw('MAX(RIGHT(' . $primary . ',1)) as kd_max'));
+        if ($q->count() > 0) {
+            foreach ($q->get() as $k) {
+                $tmp = ((int)$k->kd_max) + 1;
+                $kd = $prefix . sprintf("%03s", $tmp);
+            }
+        } else {
+            $kd = $prefix . "001";
+        }
+        return $kd;
     }
 }
