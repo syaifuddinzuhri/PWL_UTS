@@ -80,7 +80,8 @@
                                                     href="{{ route('categorie.edit', $categorie->id) }}">Edit</a>
                                                 <button type="button" class="btn btn-sm btn-danger btn-delete"
                                                     data-attr="{{ route('categorie.destroy', $categorie->id) }}"
-                                                    data-toggle="modal" data-target="#deleteModal">
+                                                    data-redirect="{{ route('categorie.index') }}" data-toggle="modal"
+                                                    data-target="#deleteModal">
                                                     Delete
                                                 </button>
                                             </td>
@@ -127,6 +128,7 @@
         $(document).ready(function() {
             $('#categories-table .btn-delete').on('click', function() {
                 let url = $(this).data('attr')
+                let redirect = $(this).data('redirect')
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $('#submit-delete').on('click', function() {
                     $.ajax({
@@ -138,7 +140,7 @@
                         },
                         success: function(response) {
                             $('#deleteModal').modal('hide')
-                            location.reload();
+                            window.location.href = redirect;
                         }
                     });
                 })
