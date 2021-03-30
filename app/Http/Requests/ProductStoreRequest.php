@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Models\Product;
-use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\DB;
 
