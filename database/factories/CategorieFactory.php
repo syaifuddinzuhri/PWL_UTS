@@ -21,6 +21,9 @@ class CategorieFactory extends Factory
      */
     public function definition()
     {
-        return [];
+        return [
+            'name' => $this->faker->words(2, true),
+            'description' => $this->faker->paragraph($nbSentences = 8, $variableNbSentences = true)
+        ];
     }
 }
