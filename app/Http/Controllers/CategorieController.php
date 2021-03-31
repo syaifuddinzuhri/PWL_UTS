@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategorieStoreRequest;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CategorieController extends Controller
 {
@@ -44,7 +45,8 @@ class CategorieController extends Controller
     public function store(CategorieStoreRequest $request)
     {
         Categorie::create($request->getAttributes());
-        return redirect()->route('categorie.index')->with('success', 'Data saved successfully!');
+        Alert::success('Congratulations...', 'Data saved successfully');
+        return redirect()->route('categorie.index');
     }
 
     /**
@@ -81,7 +83,8 @@ class CategorieController extends Controller
     public function update(CategorieStoreRequest $request, $id)
     {
         Categorie::findOrFail($id)->update($request->getAttributes());
-        return redirect()->route('categorie.index')->with('success', 'Data updated successfully!');
+        Alert::success('Congratulations...', 'Data updated successfully');
+        return redirect()->route('categorie.index');
     }
 
     /**

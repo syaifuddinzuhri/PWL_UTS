@@ -6,6 +6,7 @@ use App\Http\Requests\ProductStoreRequest;
 use App\Models\Categorie;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -51,7 +52,8 @@ class ProductController extends Controller
     public function store(ProductStoreRequest $request)
     {
         Product::create($request->getAttributes());
-        return redirect()->route('product.index')->with('success', 'Data saved successfully!');
+        Alert::success('Congratulations...', 'Data saved successfully');
+        return redirect()->route('product.index');
     }
 
     /**
@@ -89,7 +91,8 @@ class ProductController extends Controller
     public function update(ProductStoreRequest $request, $id)
     {
         Product::findOrFail($id)->update($request->getAttributes());
-        return redirect()->route('product.index')->with('success', 'Data updated successfully!');
+        Alert::success('Congratulations...', 'Data updated  successfully');
+        return redirect()->route('product.index');
     }
 
     /**

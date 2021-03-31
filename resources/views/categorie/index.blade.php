@@ -58,16 +58,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
-                    <div class="alert alert-success" style="display: none" id="alert">
-                        <p></p>
-                    </div>
-                </div>
-                <div class="col-12">
                     <div class="card shadow">
                         <div class="card-header">
                             <h5 class="card-title font-weight-bold m-0">Data Categories</h5>
@@ -140,6 +130,7 @@
 @endsection
 
 @section('script')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script>
         $(document).ready(function() {
@@ -157,9 +148,13 @@
                         },
                         success: function(response) {
                             $('#deleteModal').modal('hide')
-                            window.location.href = redirect;
-                            $('#alert').css('display', 'block')
-                            $('#alert>p').text(response['message'])
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Congratulations...',
+                                text: response['message'],
+                                confirmButtonText: "<a href='" + redirect +
+                                    "' class='text-light' style='text-decoration: none'>OK</a>"
+                            })
                         }
                     });
                 })
