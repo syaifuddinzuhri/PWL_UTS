@@ -62,6 +62,9 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
+                    <div class="alert alert-success" style="display: none" id="alert">
+                        <p></p>
+                    </div>
                 </div>
                 <div class="col-12">
                     <div class="card shadow">
@@ -162,6 +165,8 @@
                         success: function(response) {
                             $('#deleteModal').modal('hide')
                             window.location.href = redirect;
+                            $('#alert').css('display', 'block')
+                            $('#alert>p').text(response['message'])
                         }
                     });
                 })
